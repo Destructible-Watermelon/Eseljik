@@ -24,14 +24,16 @@ Commands are stored in "stacks". Stacks are seperated by newlines. Stacks are na
 |?      |subs with a move from active variable, move one along the variable (using the next move next ?)|
 |!|?, but the inverse of inputted move|
 |~|subs randomly with 0 or 1|
-|<      |signals the start of the program. A program without one starts at the first stack with a question mark at the start, or should no stacks fulfil that, it starts on the first non-empty stack|
+|<      |signals the start of the program. A program without one starts at the first stack with a ?, !, : or " at the start, or should no stacks fulfil that, it starts on the first non-empty stack|
 |\|     |subs last move (last move is 1 or 0, and changes everytime the pointer moves)|
 |_      |subs inverse of last move|
 |#      |Restarts the program, with the active variable active by default|
 |*      |Same as #, except it prints the latest move|
 |@      |dumps all the content of the variable that the var pointer is across from (only useful when looping)|
+|+|removes the currently selected bit|
 |[|adds last move (char) at the start of active var|
 |]|[, but at the end|
+|0|adds last move before the current bit (cursor points to added bit)|
 |&|dumps active variable (active variable = '')|
 |^|subs 0 if active variable is empty, else 1|
 |=|the next command used is executed but the pointer stays stationary, but the latest move value changes|
@@ -41,3 +43,11 @@ Commands are stored in "stacks". Stacks are seperated by newlines. Stacks are na
 |(|moves one back along the active variable|
 |\\|subs 0 if last move was 1, else don't move|
 |/|subs 1 if last move was 0, else don't move|
+|-|If the program halts this run, no bit of output is produced|
+|{|print the contents of the active variable, by converting every 7 bits into a char|
+|}|print the contents of the active variable, as binary|
+|input|Input is converted to program info like this: Regular binary and ascii text can alternate: binary is denoted by (<binary here>), and ascii is used everywhere else (to use ( and ), simply escape them like so: \\(  ) Ascii text is converted to binary by the seven bits that the ascii encoding of that char uses|
+|$|add user input into active variable, at the start|
+|%|add user input into active variable, at the end|
+|3|set active variable to user input|
+|2|add user input to active variable, from where the cursor is (behind current bit) (The first bit of input is the next to be used.)
